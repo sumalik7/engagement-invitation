@@ -1,83 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Sarah & Subhaan | Engagement Invitation</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Scheherazade+New&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Scheherazade+New&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-<div class="envelope" onclick="openEnvelope()">
-  <div class="flap"></div>
+  <!-- Optional: Flag display area (adjust URL as needed) -->
+  <section class="flag-area" aria-label="Flag display" style="text-align:center; padding: 16px 0;">
+    <img id="flagImg" src="https://example.com/flags/us.png" alt="Flag" loading="lazy"
+         style="max-width: 180px; width: 40%; height: auto; object-fit: contain; display:block; margin:0 auto; transition: opacity 300ms ease-in-out;" />
+    <div id="flagSpinner" aria-label="Loading flag" style="display:none; font-size: 0.9em; color:#666;">
+      Loading flag...
+    </div>
+  </section>
 
-  <div class="letter">
-    <div class="content">
-      <div class="flags">
-        <img src="iraq-flag.png" alt="Iraq Flag" width="40">
-        <img src="pakistan-flag.png" alt="Pakistan Flag" width="40">
+  <div class="envelope" onclick="openEnvelope()" role="button" tabindex="0" aria-label="Open invitation envelope">
+    <div class="flap"></div>
+
+    <div class="letter" aria-label="Invitation letter">
+      <div class="content">
+
+        <p class="bismillah" id="bismillah" aria-label="Bismillah">
+          بِسْمِ ٱللَّٰهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ
+        </p>
+
+        <div class="names">Sarah & Subhaan</div>
+
+        <p class="subtitle" id="subtitle" aria-label="Subtitle">
+          Together with their families
+        </p>
+
+        <p id="event" aria-label="Event title">
+          Invite you to their Islamic Engagement
+        </p>
+
+        <div class="details" id="details" aria-label="Event details">
+          <p><strong>Time:</strong> 5:00 PM</p>
+          <p><strong>Location:</strong><br>91 Douglas Woods Hill SE</p>
+        </div>
+
+        <div class="buttons" aria-label="Invitation actions">
+          <button class="toggle" onclick="toggleLanguage(event)">العربية / English</button>
+
+          <button class="rsvp" onclick="rsvp(event)">RSVP on WhatsApp</button>
+        </div>
+
+        <p class="footer" aria-label="Footer note">Iraq ✕ Pakistan</p>
+
       </div>
-
-      <p class="bismillah" id="bismillah">
-        بِسْمِ ٱللَّٰهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ
-      </p>
-
-      <div class="names">Sarah & Subhaan</div>
-
-      <p class="subtitle" id="subtitle">
-        Together with their families
-      </p>
-
-      <p id="event">
-        Invite you to their Islamic Engagement
-      </p>
-
-      <div class="details" id="details">
-        <p><strong>Time:</strong> 5:00 PM</p>
-        <p><strong>Location:</strong><br>91 Douglas Woods Hill SE</p>
-      </div>
-
-      <div class="buttons">
-        <button class="toggle" onclick="toggleLanguage(event)">
-          العربية / English
-        </button>
-
-        <button class="rsvp" onclick="rsvp(event)">
-          RSVP on WhatsApp
-        </button>
-      </div>
-
-      <p class="footer">Iraq ✕ Pakistan</p>
     </div>
   </div>
-</div>
 
-<script>
-  // Envelope opening
-  function openEnvelope() {
-    const envelope = document.querySelector('.envelope');
-    envelope.classList.toggle('open');
-  }
+  <script src="script.js"></script>
+  <script>
+    // Lightweight flag load with fallback (optional inline to ensure the demo works standalone)
+    (function initFlag() {
+      const flagUrl = "https://example.com/flags/us.png"; // update to your flag URL
+      const img = document.getElementById("flagImg");
+      const spinner = document.getElementById("flagSpinner");
+      if (!img) return;
 
-  // Prevent button clicks from opening envelope
-  function toggleLanguage(event) {
-    event.stopPropagation();
-    const bismillah = document.getElementById('bismillah');
-    const subtitle = document.getElementById('subtitle');
-    if (bismillah.innerText.includes('بِسْمِ')) {
-      bismillah.innerText = 'In the name of Allah, the Most Gracious, the Most Merciful';
-      subtitle.innerText = 'Together with their families';
-    } else {
-      bismillah.innerText = 'بِسْمِ ٱللَّٰهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ';
-      subtitle.innerText = 'مع عائلتهم';
-    }
-  }
+      // show loader
+      if (spinner) spinner.style.display = "block";
+      img.style.opacity = "0";
+      img.style.display = "block";
 
-  function rsvp(event) {
-    event.stopPropagation();
-    window.open('https://wa.me/your-number', '_blank');
-  }
-</script>
+      img.onload = function() {
+        if (spinner) spinner.style.display = "none";
+        img.style.opacity = "1";
+      };
 
+      img.onerror = function() {
+        // Fallback placeholder
+        img.src = "https://example.com/flags/placeholder.png";
+        if (spinner) spinner.style.display = "none";
+        img.style.opacity = "1";
+      };
+
+      // Kick off loading
+      img.src = flagUrl;
+    })();
+  </script>
 </body>
 </html>
