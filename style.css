@@ -4,11 +4,23 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background:
-    radial-gradient(circle at top, #f7f3eb, #e9e4d8),
-    url("https://www.transparenttextures.com/patterns/arabesque.png");
+  background: url('f0e04462-bee4-4e46-a868-eda1c9ab3516.png') no-repeat center center;
+  background-size: cover;
   font-family: 'Playfair Display', serif;
 }
+
+.envelope {
+  width: 360px;
+  height: 260px;
+  position: relative;
+  background: rgba(255, 250, 243, 0.95); /* creamish letter effect */
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  border: 4px solid #bfa76a; /* gold edge for luxury vibe */
+}
+
 
 .envelope {
   width: 340px;
@@ -67,3 +79,4 @@ body {
 @keyframes shimmer {
   0% { background-position: 0%; }
   100% { background-
+
