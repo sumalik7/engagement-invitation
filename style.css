@@ -80,3 +80,19 @@ body {
   0% { background-position: 0%; }
   100% { background-
 
+
+.flags {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.lantern {
+  position: absolute;
+  width: 25px;
+}
+.lantern.top-left { top: 10px; left: 10px; }
+.lantern.top-right { top: 10px; right: 10px; }
+
+
